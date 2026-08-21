@@ -328,6 +328,18 @@ p {
   background-color: var(--bg-primary);
 }
 
+.todo-card.overdue {
+  border: 3px solid var(--overdue-color);
+}
+
+.todo-overdue-label {
+  display: inline-block;
+  margin-top: 4px;
+  color: var(--overdue-color);
+  font-size: 12px;
+  font-weight: 700;
+}
+
 .todo-card.completed .todo-title {
   text-decoration: line-through;
   opacity: 0.6;

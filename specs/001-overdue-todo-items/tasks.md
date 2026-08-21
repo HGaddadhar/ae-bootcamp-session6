@@ -17,15 +17,15 @@ description: "Implementation tasks for overdue todo item identification"
 
 **Purpose**: Confirm the existing frontend test and styling surfaces needed by the feature.
 
-- [ ] T001 Inspect existing TodoCard, frontend test, and theme conventions in `packages/frontend/src/components/TodoCard.js`, `packages/frontend/src/components/__tests__/TodoCard.test.js`, `packages/frontend/src/App.css`, and `packages/frontend/src/styles/theme.css`
-- [ ] T002 Confirm the focused frontend test command from `packages/frontend/package.json` and the repository workspace test commands in `package.json`
+- [X] T001 Inspect existing TodoCard, frontend test, and theme conventions in `packages/frontend/src/components/TodoCard.js`, `packages/frontend/src/components/__tests__/TodoCard.test.js`, `packages/frontend/src/App.css`, and `packages/frontend/src/styles/theme.css`
+- [X] T002 Confirm the focused frontend test command from `packages/frontend/package.json` and the repository workspace test commands in `package.json`
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
 **Purpose**: Establish the reusable date-classification surface before adding presentation behavior.
 
-- [ ] T003 Create the frontend utility module path `packages/frontend/src/utils/overdue.js` for a pure, injectable-reference-date overdue predicate
-- [ ] T004 Define strict local calendar-date validation and normalization rules in `packages/frontend/src/utils/overdue.js`, returning false for missing, malformed, impossible, or completed todo values
+- [X] T003 Create the frontend utility module path `packages/frontend/src/utils/overdue.js` for a pure, injectable-reference-date overdue predicate
+- [X] T004 Define strict local calendar-date validation and normalization rules in `packages/frontend/src/utils/overdue.js`, returning false for missing, malformed, impossible, or completed todo values
 
 **Checkpoint**: The shared overdue predicate contract is ready for story implementation and deterministic tests.
 
@@ -37,17 +37,17 @@ description: "Implementation tasks for overdue todo item identification"
 
 ### Tests for User Story 1
 
-- [ ] T005 [P] [US1] Add deterministic unit tests for past, today, future, completed, undated, and invalid due dates in `packages/frontend/src/utils/__tests__/overdue.test.js`
-- [ ] T006 [P] [US1] Extend TodoCard rendering tests to assert the `Overdue` label and overdue class for eligible todos and no overdue treatment for today, future, completed, undated, and invalid-date todos in `packages/frontend/src/components/__tests__/TodoCard.test.js`
-- [ ] T007 [US1] Add regression assertions that overdue presentation preserves title, due date, completion control, edit action, and delete action in `packages/frontend/src/components/__tests__/TodoCard.test.js`
+- [X] T005 [P] [US1] Add deterministic unit tests for past, today, future, completed, undated, and invalid due dates in `packages/frontend/src/utils/__tests__/overdue.test.js`
+- [X] T006 [P] [US1] Extend TodoCard rendering tests to assert the `Overdue` label and overdue class for eligible todos and no overdue treatment for today, future, completed, undated, and invalid-date todos in `packages/frontend/src/components/__tests__/TodoCard.test.js`
+- [X] T007 [US1] Add regression assertions that overdue presentation preserves title, due date, completion control, edit action, and delete action in `packages/frontend/src/components/__tests__/TodoCard.test.js`
 
 ### Implementation for User Story 1
 
-- [ ] T008 [US1] Implement the exported overdue predicate in `packages/frontend/src/utils/overdue.js` using strict `YYYY-MM-DD` validation, local calendar-date comparison, and incomplete-status handling
-- [ ] T009 [US1] Integrate the overdue predicate into `packages/frontend/src/components/TodoCard.js` so completion and due-date changes recalculate the derived state without changing existing actions
-- [ ] T010 [US1] Render the visible `Overdue` text label and overdue styling class from `packages/frontend/src/components/TodoCard.js` without removing existing title, due-date, completion, edit, or delete UI
-- [ ] T011 [US1] Add high-contrast overdue border and label styles for both light and dark themes in `packages/frontend/src/App.css` and `packages/frontend/src/styles/theme.css`
-- [ ] T012 [US1] Run the focused frontend Jest suite from `packages/frontend/package.json` and resolve any regressions in the overdue utility or TodoCard tests
+- [X] T008 [US1] Implement the exported overdue predicate in `packages/frontend/src/utils/overdue.js` using strict `YYYY-MM-DD` validation, local calendar date comparison, and incomplete-status handling
+- [X] T009 [US1] Integrate the overdue predicate into `packages/frontend/src/components/TodoCard.js` so completion and due-date changes recalculate the derived state without changing existing actions
+- [X] T010 [US1] Render the visible `Overdue` text label and overdue styling class from `packages/frontend/src/components/TodoCard.js` without removing existing title, due-date, completion, edit, or delete UI
+- [X] T011 [US1] Add high-contrast overdue border and label styles for both light and dark themes in `packages/frontend/src/App.css` and `packages/frontend/src/styles/theme.css`
+- [X] T012 [US1] Run the focused frontend Jest suite from `packages/frontend/package.json` and resolve any regressions in the overdue utility or TodoCard tests
 
 **Checkpoint**: User Story 1 is independently functional, accessible without color alone, and covered by deterministic logic and display tests.
 
@@ -55,8 +55,8 @@ description: "Implementation tasks for overdue todo item identification"
 
 **Purpose**: Validate the feature against existing workflows and documented quality gates.
 
-- [ ] T013 [P] Run the backend regression suite using `packages/backend/jest.config.js` and confirm no API or persistence behavior changed
-- [ ] T014 [P] Run the full workspace Jest suites with coverage from `package.json` and confirm the project coverage target remains satisfied
+- [X] T013 [P] Run the backend regression suite using `packages/backend/jest.config.js` and confirm no API or persistence behavior changed
+- [X] T014 [P] Run the full workspace Jest suites with coverage from `package.json` and confirm the project coverage target remains satisfied
 - [ ] T015 Run the manual light-theme and dark-theme scenarios from `specs/001-overdue-todo-items/quickstart.md`, including completion and due-date changes
 
 ## Dependencies & Execution Order

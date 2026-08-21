@@ -19,6 +19,11 @@ describe('TodoCard Component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.useFakeTimers().setSystemTime(new Date(2025, 11, 25));
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
   });
 
   it('should render todo title and due date', () => {
@@ -98,5 +103,38 @@ describe('TodoCard Component', () => {
     render(<TodoCard todo={todoNoDate} {...mockHandlers} isLoading={false} />);
     
     expect(screen.queryByText(/Due:/)).not.toBeInTheDocument();
+  });
+
+  it('should render overdue treatment for an incomplete todo due before today', () => {
+    const overdueTodo = { ...mockTodo, dueDate: '2025-12-24' };
+    const { container } = render(<TodoCard todo={overdueTodo} {...mockHandlers} isLoading={false} />);
+
+    expect(screen.getByText('Overdue')).toBeInTheDocument();
+    expect(container.querySelector('.todo-card')).toHaveClass('overdue');
+  });
+
+  it.each([
+    ['today', { dueDate: '2025-12-25', completed: 0 }],
+    ['future', { dueDate: '2025-12-26', completed: 0 }],
+    ['completed', { dueDate: '2025-12-24', completed: 1 }],
+    ['undated', { dueDate: null, completed: 0 }],
+    ['invalid-date', { dueDate: 'not-a-date', completed: 0 }],
+  ])('does not render overdue treatment for a %s todo', (name, overrides) => {
+    const { container } = render(
+      <TodoCard todo={{ ...mockTodo, ...overrides }} {...mockHandlers} isLoading={false} />
+    );
+
+    expect(screen.queryByText('Overdue')).not.toBeInTheDocument();
+    expect(container.querySelector('.todo-card')).not.toHaveClass('overdue');
+  });
+
+  it('preserves the title, due date, completion control, and actions when overdue', () => {
+    render(<TodoCard todo={{ ...mockTodo, dueDate: '2025-12-24' }} {...mockHandlers} isLoading={false} />);
+
+    expect(screen.getByText('Test Todo')).toBeInTheDocument();
+    expect(screen.getByText(/December 24, 2025/)).toBeInTheDocument();
+    expect(screen.getByRole('checkbox')).toBeInTheDocument();
+    expect(screen.getByLabelText(/Edit/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Delete/)).toBeInTheDocument();
   });
 });
