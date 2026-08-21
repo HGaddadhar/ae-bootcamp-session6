@@ -8,6 +8,14 @@
 
 **Input**: User description: "As a todo application user, I want to easily identify and distinguish overdue tasks in my todo list so that I can prioritize my work and quickly see which tasks are past their due date. Users need a clear, visual way to identify todos that have not been completed by their due date. This feature must include automated tests covering the overdue determination logic and its display, following the existing Jest patterns in the repository."
 
+## Clarifications
+
+### Session 2026-08-21
+
+- Q: How should an incomplete overdue todo be visually distinguished from other todos? -> A: A high-contrast accent border plus a visible "Overdue" text label.
+
+The overdue treatment MUST combine a high-contrast accent border with a visible "Overdue" text label so that the distinction remains understandable without relying on color alone.
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Identify overdue work at a glance (Priority: P1)
@@ -41,7 +49,7 @@ When a user views their todo list, unfinished todos whose due date has passed ar
 - **FR-001**: The system MUST determine whether a todo is overdue using its due date and the current calendar date.
 - **FR-002**: The system MUST identify a todo as overdue only when it has a valid due date before today and is incomplete.
 - **FR-003**: The system MUST NOT identify todos due today, due in the future, completed before or after their due date, or without a due date as overdue.
-- **FR-004**: The todo list MUST provide a clear visual distinction for overdue todos that remains understandable in both supported color themes.
+- **FR-004**: The todo list MUST provide a high-contrast accent border and a visible "Overdue" text label for overdue todos in both supported color themes.
 - **FR-005**: The overdue distinction MUST preserve the todo's title, due date, completion status, and existing actions.
 - **FR-006**: The overdue distinction MUST be removed when an overdue todo is completed or its due date is changed so that it is no longer overdue.
 - **FR-007**: The system MUST continue to support existing todo creation, viewing, editing, completion, deletion, and persistence behavior.
